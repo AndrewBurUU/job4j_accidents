@@ -21,6 +21,11 @@ public class MemAccidentService implements AccidentService {
     }
 
     @Override
+    public void update(Accident accident) {
+        accidentRepository.update(accident);
+    }
+
+    @Override
     public Collection<Accident> findAll() {
         return accidentRepository.findAll();
     }

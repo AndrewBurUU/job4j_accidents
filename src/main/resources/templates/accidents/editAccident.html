@@ -30,7 +30,7 @@
                 Изменение инцидента
             </div>
             <div class="card-body">
-                <form th:action="@{/accidents/saveAccident}" method="POST" th:object="${accident}" enctype="multipart/form-data">
+                <form th:action="@{/accidents/updateAccident}" method="POST" th:object="${accident}" enctype="multipart/form-data">
                     <input type="hidden" th:field="*{id}">
                     <div class="form-group">
                         <label for="name">Имя</label>

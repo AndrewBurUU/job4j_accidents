@@ -5,7 +5,10 @@ import ru.job4j.accidents.model.*;
 import java.util.*;
 
 public interface AccidentService {
+
     Accident save(Accident accident);
+
+    void update(Accident accident);
 
     Collection<Accident> findAll();
 

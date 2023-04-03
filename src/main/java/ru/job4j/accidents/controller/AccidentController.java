@@ -32,8 +32,15 @@ public class AccidentController {
     }
 
     @GetMapping("/formUpdateAccident")
-    public String update(@RequestParam("id") int id, Model model) {
+    public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("accident", accidentService.findById(id).get());
         return "accidents/editAccident";
     }
+
+    @PostMapping("/updateAccident")
+    public String update(@ModelAttribute Accident accident, Model model) {
+        accidentService.update(accident);
+        return "redirect:/accidents/all";
+    }
+
 }

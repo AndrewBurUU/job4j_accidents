@@ -21,11 +21,14 @@ public class MemAccidentRepository implements AccidentRepository {
 
     @Override
     public Accident save(Accident accident) {
-        if (accident.getId() == 0) {
-            accident.setId(nextId.getAndIncrement());
-        }
+        accident.setId(nextId.getAndIncrement());
         accidents.put(accident.getId(), accident);
         return accident;
+    }
+
+    @Override
+    public void update(Accident accident) {
+        accidents.put(accident.getId(), accident);
     }
 
     @Override
