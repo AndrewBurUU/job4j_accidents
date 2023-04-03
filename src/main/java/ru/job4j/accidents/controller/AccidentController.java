@@ -28,8 +28,7 @@ public class AccidentController {
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, Model model) {
         accidentService.save(accident);
-        model.addAttribute("accidents", accidentService.findAll());
-        return "accidents/all";
+        return "redirect:/accidents/all";
     }
 
     @GetMapping("/formUpdateAccident")
