@@ -24,4 +24,9 @@ public class MemAccidentService implements AccidentService {
     public Collection<Accident> findAll() {
         return accidentRepository.findAll();
     }
+
+    @Override
+    public Optional<Accident> findById(int id) {
+        return accidentRepository.findById(id);
+    }
 }

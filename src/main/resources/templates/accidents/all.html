@@ -32,16 +32,20 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Заявитель</th>
-                        <th scope="col">Заявление</th>
+                        <th scope="col">Инцидент</th>
                         <th scope="col">Адрес</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="accident: ${accidents}">
-                        <td th:text="${accident.id}"/>
-                        <td th:text="${accident.name}"/>
-                        <td th:text="${accident.text}"/>
-                        <td th:text="${accident.address}"/>
+                        <td th:text="${accident.id}" />
+                        <td>
+                            <a th:text="${accident.name}"
+                               th:href="@{|/accidents/formUpdateAccident?id=${accident.id}|}">
+                            </a>
+                        </td>
+                        <td th:text="${accident.text}" />
+                        <td th:text="${accident.address}" />
                     </tr>
                     </tbody>
                 </table>

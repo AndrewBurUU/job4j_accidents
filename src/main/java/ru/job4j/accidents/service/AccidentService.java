@@ -8,4 +8,6 @@ public interface AccidentService {
     Accident save(Accident accident);
 
     Collection<Accident> findAll();
+
+    Optional<Accident> findById(int id);
 }

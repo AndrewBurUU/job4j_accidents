@@ -9,4 +9,6 @@ public interface AccidentRepository {
     Accident save(Accident accident);
 
     Collection<Accident> findAll();
+
+    Optional<Accident> findById(int id);
 }
