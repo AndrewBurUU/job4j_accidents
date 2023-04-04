@@ -16,4 +16,6 @@ public interface AccidentRepository {
 
     Collection<AccidentType> getAccidentTypes();
 
+    Collection<Rule> getRules();
+
 }

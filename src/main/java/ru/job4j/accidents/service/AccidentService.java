@@ -15,4 +15,8 @@ public interface AccidentService {
     Optional<Accident> findById(int id);
 
     Collection<AccidentType> getAccidentTypes();
+
+    Collection<Rule> getRules();
+
+    Set<Rule> makeRules(String[] ids);
 }

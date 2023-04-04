@@ -39,4 +39,20 @@ public class MemAccidentService implements AccidentService {
     public Collection<AccidentType> getAccidentTypes() {
         return accidentRepository.getAccidentTypes();
     }
+
+    @Override
+    public Collection<Rule> getRules() {
+        return accidentRepository.getRules();
+    }
+
+    @Override
+    public Set<Rule> makeRules(String[] ids) {
+        Set<Rule> rules = new HashSet<>();
+        for (String id : ids) {
+            Rule rule = new Rule();
+            rule.setId(Integer.parseInt(id));
+            rules.add(rule);
+        }
+        return rules;
+    }
 }
