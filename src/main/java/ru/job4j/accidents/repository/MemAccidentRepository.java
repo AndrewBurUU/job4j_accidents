@@ -36,7 +36,7 @@ public class MemAccidentRepository implements AccidentRepository {
 
     @Override
     public void update(Accident accident) {
-        accidents.put(accident.getId(), accident);
+        accidents.replace(accident.getId(), accident);
     }
 
     @Override
