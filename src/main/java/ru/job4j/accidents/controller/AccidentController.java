@@ -39,8 +39,13 @@ public class AccidentController {
 
     @GetMapping("/formUpdateAccident")
     public String edit(@RequestParam("id") int id, Model model) {
+        var accident = accidentService.findById(id);
+        if (accident.isEmpty()) {
+            model.addAttribute("message", "Инцидент не найден.");
+            return "errors/404";
+        }
+        model.addAttribute("accident", accident.get());
         model.addAttribute("types", accidentService.getAccidentTypes());
-        model.addAttribute("accident", accidentService.findById(id).get());
         model.addAttribute("rules", accidentService.getRules());
         return "accidents/editAccident";
     }
