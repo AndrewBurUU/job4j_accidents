@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accidents.service.*;
-import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.*;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/accidents")
@@ -21,7 +23,8 @@ public class AccidentController {
     }
 
     @GetMapping("/createAccident")
-    public String viewCreateAccident() {
+    public String viewCreateAccident(Model model) {
+        model.addAttribute("types", accidentService.getAccidentTypes());
         return "accidents/createAccident";
     }
 
@@ -33,6 +36,7 @@ public class AccidentController {
 
     @GetMapping("/formUpdateAccident")
     public String edit(@RequestParam("id") int id, Model model) {
+        model.addAttribute("types", accidentService.getAccidentTypes());
         model.addAttribute("accident", accidentService.findById(id).get());
         return "accidents/editAccident";
     }

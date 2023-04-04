@@ -14,4 +14,6 @@ public interface AccidentRepository {
 
     Optional<Accident> findById(int id);
 
+    Collection<AccidentType> getAccidentTypes();
+
 }

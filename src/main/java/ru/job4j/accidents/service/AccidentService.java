@@ -13,4 +13,6 @@ public interface AccidentService {
     Collection<Accident> findAll();
 
     Optional<Accident> findById(int id);
+
+    Collection<AccidentType> getAccidentTypes();
 }

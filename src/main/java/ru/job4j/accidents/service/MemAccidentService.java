@@ -34,4 +34,9 @@ public class MemAccidentService implements AccidentService {
     public Optional<Accident> findById(int id) {
         return accidentRepository.findById(id);
     }
+
+    @Override
+    public Collection<AccidentType> getAccidentTypes() {
+        return accidentRepository.getAccidentTypes();
+    }
 }

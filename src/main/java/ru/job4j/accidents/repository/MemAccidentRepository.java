@@ -12,11 +12,15 @@ public class MemAccidentRepository implements AccidentRepository {
 
     private final AtomicInteger nextId = new AtomicInteger(1);
     private final ConcurrentHashMap<Integer, Accident> accidents = new ConcurrentHashMap<>();
+    private final List<AccidentType> types = new ArrayList<>();
 
     public MemAccidentRepository() {
-        save(new Accident(0, "name1", "text1", "address1"));
-        save(new Accident(0, "name2", "text2", "address2"));
-        save(new Accident(0, "name3", "text3", "address3"));
+        save(new Accident(0, "name1", "text1", "address1", new AccidentType()));
+        save(new Accident(0, "name2", "text2", "address2", new AccidentType()));
+        save(new Accident(0, "name3", "text3", "address3", new AccidentType()));
+        types.add(new AccidentType(1, "Две машины"));
+        types.add(new AccidentType(2, "Машина и человек"));
+        types.add(new AccidentType(3, "Машина и велосипед"));
     }
 
     @Override
@@ -39,6 +43,11 @@ public class MemAccidentRepository implements AccidentRepository {
     @Override
     public Optional<Accident> findById(int id) {
         return Optional.ofNullable(accidents.get(id));
+    }
+
+    @Override
+    public Collection<AccidentType> getAccidentTypes() {
+        return types;
     }
 
 }
