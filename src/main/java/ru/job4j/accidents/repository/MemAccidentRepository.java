@@ -4,16 +4,15 @@ import org.springframework.stereotype.*;
 import ru.job4j.accidents.model.*;
 
 import java.util.*;
-import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
 @Repository
 public class MemAccidentRepository implements AccidentRepository {
 
     private final AtomicInteger nextId = new AtomicInteger(1);
-    private final ConcurrentHashMap<Integer, Accident> accidents = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, AccidentType> types = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, Rule> rules = new ConcurrentHashMap<>();
+    private final Map<Integer, Accident> accidents = new HashMap<>();
+    private final Map<Integer, AccidentType> types = new HashMap<>();
+    private final Map<Integer, Rule> rules = new HashMap<>();
 
     public MemAccidentRepository() {
         save(new Accident(0, "name1", "text1", "address1", new AccidentType(), new HashSet<>()));

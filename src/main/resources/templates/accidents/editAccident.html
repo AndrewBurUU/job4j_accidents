@@ -59,7 +59,9 @@
                         <select class="form-control" id="rIds" name="rIds" multiple>
                             <option th:each="rule: ${rules}"
                                     th:text="${rule.name}"
-                                    th:value="${rule.id}">
+                                    th:value="${rule.id}"
+                                    th:selected="${accident.rules.contains(rule)}"
+                            >
                             </option>
                         </select>
                     </div>
