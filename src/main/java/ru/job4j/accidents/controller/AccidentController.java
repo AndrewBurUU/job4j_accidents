@@ -8,14 +8,13 @@ import ru.job4j.accidents.service.*;
 import ru.job4j.accidents.model.*;
 
 import javax.servlet.http.*;
-import java.util.*;
 
 @Controller
 @RequestMapping("/accidents")
 @AllArgsConstructor
 public class AccidentController {
 
-    private final AccidentService accidentService;
+    private final JDBCAccidentService accidentService;
 
     @GetMapping("/all")
     public String getAll(Model model) {
@@ -33,7 +32,7 @@ public class AccidentController {
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         accident.setRules(accidentService.makeRules(req.getParameterValues("rIds")));
-        accidentService.save(accident);
+        accidentService.create(accident);
         return "redirect:/accidents/all";
     }
 
