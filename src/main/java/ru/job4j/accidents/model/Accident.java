@@ -29,7 +29,7 @@ public class Accident {
     @JoinColumn(name = "accident_type_id")
     private AccidentType type;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "accident_rules",
             joinColumns = {@JoinColumn(name = "accident_id")},
