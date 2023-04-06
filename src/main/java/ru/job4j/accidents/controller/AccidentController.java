@@ -14,10 +14,9 @@ import javax.servlet.http.*;
 @AllArgsConstructor
 public class AccidentController {
 
-    /**
-    private final JDBCAccidentService accidentService;*/
-
-    private final HbmAccidentService accidentService;
+    private final SpringDataAccidentService accidentService;
+    private final SpringDataAccidentTypeService typeService;
+    private final SpringDataRuleService ruleService;
 
     @GetMapping("/all")
     public String getAll(Model model) {
@@ -27,14 +26,14 @@ public class AccidentController {
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
-        model.addAttribute("types", accidentService.getAccidentTypes());
-        model.addAttribute("rules", accidentService.getRules());
+        model.addAttribute("types", typeService.getAccidentTypes());
+        model.addAttribute("rules", ruleService.getRules());
         return "accidents/createAccident";
     }
 
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        accident.setRules(accidentService.makeRules(req.getParameterValues("rIds")));
+        accident.setRules(ruleService.makeRules(req.getParameterValues("rIds")));
         accidentService.create(accident);
         return "redirect:/accidents/all";
     }
@@ -47,14 +46,14 @@ public class AccidentController {
             return "errors/404";
         }
         model.addAttribute("accident", accident.get());
-        model.addAttribute("types", accidentService.getAccidentTypes());
-        model.addAttribute("rules", accidentService.getRules());
+        model.addAttribute("types", typeService.getAccidentTypes());
+        model.addAttribute("rules", ruleService.getRules());
         return "accidents/editAccident";
     }
 
     @PostMapping("/updateAccident")
     public String update(@ModelAttribute Accident accident, HttpServletRequest req) {
-        accident.setRules(accidentService.makeRules(req.getParameterValues("rIds")));
+        accident.setRules(ruleService.makeRules(req.getParameterValues("rIds")));
         accidentService.update(accident);
         return "redirect:/accidents/all";
     }
