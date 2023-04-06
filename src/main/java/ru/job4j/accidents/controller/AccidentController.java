@@ -14,7 +14,10 @@ import javax.servlet.http.*;
 @AllArgsConstructor
 public class AccidentController {
 
-    private final JDBCAccidentService accidentService;
+    /**
+    private final JDBCAccidentService accidentService;*/
+
+    private final HbmAccidentService accidentService;
 
     @GetMapping("/all")
     public String getAll(Model model) {
