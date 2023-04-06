@@ -10,59 +10,33 @@ import java.util.*;
 @Repository
 @AllArgsConstructor
 public class AccidentHibernate {
-    private final SessionFactory sf;
+
+    private final CrudRepository crudRepository;
 
     public Accident save(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.save(accident);
-            for (Rule rule : accident.getRules()) {
-                AccidentRules accidentRules = new AccidentRules();
-                accidentRules.setAccident(accident);
-                accidentRules.setRule(rule);
-                session.save(accidentRules);
-            }
-            return accident;
-        }
+        crudRepository.run(session -> session.persist(accident));
+        return accident;
     }
 
     public void update(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.merge(accident);
-        }
+        crudRepository.run(session -> session.merge(accident));
     }
 
     public Optional<Accident> findById(int id) {
-        try (Session session = sf.openSession()) {
-            Optional<Accident> accident = session
-                    .createQuery("FROM Accident ac LEFT JOIN FETCH ac.rules WHERE ac.id = :fId", Accident.class)
-                    .setParameter("fId", id)
-                    .uniqueResultOptional();
-            return accident;
-        }
+        return crudRepository.optional("FROM Accident ac JOIN FETCH ac.rules WHERE ac.id = :fId", Accident.class,
+                Map.of("fId", id));
     }
 
     public List<Accident> getAll() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("from Accident", Accident.class)
-                    .list();
-        }
+        return crudRepository.query("FROM Accident", Accident.class);
     }
 
     public List<AccidentType> getAccidentTypes() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("from AccidentType", AccidentType.class)
-                    .list();
-        }
+        return crudRepository.query("FROM AccidentType", AccidentType.class);
     }
 
     public List<Rule> getRules() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("from Rule", Rule.class)
-                    .list();
-        }
+        return crudRepository.query("FROM Rule", Rule.class);
     }
 
 }
