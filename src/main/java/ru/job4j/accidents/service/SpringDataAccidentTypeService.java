@@ -14,7 +14,7 @@ public class SpringDataAccidentTypeService {
     private final AccidentTypeRepository accidentTypeRepository;
 
     public List<AccidentType> getAccidentTypes() {
-        return accidentTypeRepository.getAccidentTypes();
+        return accidentTypeRepository.findAll();
     }
 
 }

@@ -7,5 +7,5 @@ import java.util.*;
 
 public interface RulesRepository extends CrudRepository<Rule, Integer> {
 
-    List<Rule> getRules();
+    List<Rule> findAll();
 }

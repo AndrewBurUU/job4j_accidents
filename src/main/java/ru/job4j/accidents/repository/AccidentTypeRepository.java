@@ -7,5 +7,5 @@ import java.util.*;
 
 public interface AccidentTypeRepository extends CrudRepository<AccidentType, Integer> {
 
-    List<AccidentType> getAccidentTypes();
+    List<AccidentType> findAll();
 }

@@ -14,7 +14,7 @@ public class SpringDataRuleService {
     private final RulesRepository rulesRepository;
 
     public List<Rule> getRules() {
-        return rulesRepository.getRules();
+        return rulesRepository.findAll();
     }
 
     public Set<Rule> makeRules(String[] ids) {
