@@ -9,8 +9,15 @@ import ru.job4j.accidents.repository.*;
 @Controller
 public class IndexController {
 
+    private final AccidentHibernate accidents;
+
+    public IndexController(AccidentHibernate accidents) {
+        this.accidents = accidents;
+    }
+
     @GetMapping({"/", "/index"})
     public String index(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "index";
     }
 }
