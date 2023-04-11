@@ -33,8 +33,7 @@ public class RegControl {
         try {
             users.save(user);
         } catch (Exception e) {
-            model.addAttribute("message", "Ошибка сохранения логина. Возможно, логин уже существует");
-            return "errors/404";
+            e.printStackTrace();
         }
         return "redirect:/login";
     }
