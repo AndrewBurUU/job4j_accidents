@@ -49,7 +49,8 @@ class AccidentControllerTest {
     @WithMockUser
     public void shouldReturnNewAccident() throws Exception {
         this.mockMvc.perform(post("/accidents/saveAccident")
-                .param("name", "Name1")
+                        .param("id", "0")
+                        .param("name", "Name1")
                         .param("text", "Text1")
                         .param("address", "Address1")
                         .param("type.id", "1")
