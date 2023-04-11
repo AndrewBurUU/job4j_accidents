@@ -22,6 +22,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.service.AccidentService;
 /**import static org.junit.Assert.assertThat;*/
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
@@ -47,7 +48,7 @@ class AccidentControllerTest {
     @Test
     @WithMockUser
     public void shouldReturnNewAccident() throws Exception {
-        this.mockMvc.perform(get("/accidents/saveAccident")
+        this.mockMvc.perform(post("/accidents/saveAccident")
                 .param("name", "Name1")
                         .param("text", "Text1")
                         .param("address", "Address1")

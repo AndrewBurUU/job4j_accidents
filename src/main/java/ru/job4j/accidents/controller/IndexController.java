@@ -9,9 +9,9 @@ import ru.job4j.accidents.repository.*;
 @Controller
 public class IndexController {
 
-    private final AccidentHibernate accidents;
+    private final AccidentRepository accidents;
 
-    public IndexController(AccidentHibernate accidents) {
+    public IndexController(AccidentRepository accidents) {
         this.accidents = accidents;
     }
 
