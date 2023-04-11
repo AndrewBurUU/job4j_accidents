@@ -10,8 +10,6 @@ import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.repository.AuthorityRepository;
 import ru.job4j.accidents.repository.UserRepository;
 
-import java.util.*;
-
 @Controller
 public class RegControl {
 
