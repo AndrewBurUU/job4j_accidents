@@ -23,7 +23,6 @@ import ru.job4j.accidents.service.AccidentService;
 /**import static org.junit.Assert.assertThat;*/
 import static org.mockito.Mockito.verify;
 
-@Disabled
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
 @Transactional
@@ -44,6 +43,7 @@ class AccidentControllerTest {
                 .andExpect(view().name("accidents/all"));
     }
 
+    @Disabled
     @Test
     @WithMockUser
     public void shouldReturnNewAccident() throws Exception {
