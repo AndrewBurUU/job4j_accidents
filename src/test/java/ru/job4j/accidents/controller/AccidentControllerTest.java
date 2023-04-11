@@ -18,9 +18,9 @@ import ru.job4j.accidents.Main;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.service.AccidentService;
-/**import static org.junit.Assert.assertThat;*/
+import ru.job4j.accidents.model.*;
+import ru.job4j.accidents.service.*;
+
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -31,6 +31,9 @@ class AccidentControllerTest {
 
     @MockBean
     private AccidentService accidentService;
+
+    @MockBean
+    private SpringDataAccidentTypeService accidentTypeService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -60,6 +63,13 @@ class AccidentControllerTest {
         ArgumentCaptor<Accident> argument = ArgumentCaptor.forClass(Accident.class);
         verify(accidentService).save(argument.capture());
         assertThat(argument.getValue().getName()).isEqualTo("Name1");
+    }
+
+    @Disabled
+    @Test
+    @WithMockUser
+    public void shouldReturnAccidentTypes() throws Exception {
+        assertThat(accidentTypeService.getAccidentTypes().size()).isGreaterThan(0);
     }
 
 }
