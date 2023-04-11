@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.repository.AuthorityRepository;
 import ru.job4j.accidents.repository.UserRepository;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 @Controller
 public class RegControl {
@@ -16,6 +18,7 @@ public class RegControl {
     private final PasswordEncoder encoder;
     private final UserRepository users;
     private final AuthorityRepository authorities;
+    private static final Logger LOG = LogManager.getLogger(RegControl.class.getName());
 
     public RegControl(PasswordEncoder encoder, UserRepository users, AuthorityRepository authorities) {
         this.encoder = encoder;
@@ -30,10 +33,12 @@ public class RegControl {
         user.setAuthority(authorities.findByAuthority("ROLE_USER"));
         try {
             users.save(user);
+            return "redirect:/login";
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
-        return "redirect:/login";
+        model.addAttribute("message", "Ошибка сохранения логина. Возможно, логин уже существует");
+        return "errors/404";
     }
 
     @GetMapping("/reg")
