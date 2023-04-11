@@ -35,7 +35,7 @@ public class RegControl {
             users.save(user);
             return "redirect:/login";
         } catch (Exception e) {
-            LOG.error(e);
+            LOG.error(e.getMessage(), e);
         }
         model.addAttribute("message", "Ошибка сохранения логина. Возможно, логин уже существует");
         return "errors/404";
