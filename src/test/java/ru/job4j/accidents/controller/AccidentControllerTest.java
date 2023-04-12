@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class AccidentControllerTest {
 
     @MockBean
-    private AccidentService accidentService;
+    private SpringDataAccidentService accidentService;
 
     @MockBean
     private SpringDataAccidentTypeService accidentTypeService;
@@ -47,7 +47,6 @@ class AccidentControllerTest {
                 .andExpect(view().name("accidents/all"));
     }
 
-    @Disabled
     @Test
     @WithMockUser
     public void shouldReturnNewAccident() throws Exception {
@@ -61,15 +60,8 @@ class AccidentControllerTest {
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
         ArgumentCaptor<Accident> argument = ArgumentCaptor.forClass(Accident.class);
-        verify(accidentService).save(argument.capture());
+        verify(accidentService).create(argument.capture());
         assertThat(argument.getValue().getName()).isEqualTo("Name1");
-    }
-
-    @Disabled
-    @Test
-    @WithMockUser
-    public void shouldReturnAccidentTypes() throws Exception {
-        assertThat(accidentTypeService.getAccidentTypes().size()).isGreaterThan(0);
     }
 
 }
