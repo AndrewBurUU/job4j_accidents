@@ -32,9 +32,6 @@ class AccidentControllerTest {
     @MockBean
     private SpringDataAccidentService accidentService;
 
-    @MockBean
-    private SpringDataAccidentTypeService accidentTypeService;
-
     @Autowired
     private MockMvc mockMvc;
 
